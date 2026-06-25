@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTN iLend - Premium iPhone Loans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 214, 0, 0.95);
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #003DA5;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo span {
+            font-size: 36px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo-main {
+            font-size: 28px;
+        }
+
+        .logo-sub {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Features */
+        .features-section {
+            background: white;
+            padding: 60px 40px;
+            margin-top: 0;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 36px;
+            color: #003DA5;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            background: linear-gradient(135deg, rgba(0, 61, 165, 0.05) 0%, rgba(255, 214, 0, 0.05) 100%);
+            border: 2px solid rgba(0, 61, 165, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: linear-gradient(135deg, rgba(0, 61, 165, 0.1) 0%, rgba(255, 214, 0, 0.1) 100%);
+            border-color: #FFD600;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 61, 165, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #003DA5;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            background: linear-gradient(135deg, #003DA5 0%, #0052CC 100%);
+            padding: 60px 40px;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .how-it-works-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 36px;
+            color: #FFD600;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 214, 0, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #FFD600;
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #FFD600;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            color: #003DA5;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: linear-gradient(90deg, #FFD600 0%, #FFC400 100%);
+            color: #003DA5;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 214, 0, 0.4);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 214, 0, 0.6);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(255, 214, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(255, 214, 0, 0.6);
+            }
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background: linear-gradient(135deg, #003DA5 0%, #0052CC 100%);
+            padding: 60px 40px;
+            overflow: hidden;
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reviews-title {
+            text-align: center;
+            font-size: 36px;
+            color: #FFD600;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .reviews-scroll-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .reviews-scroll {
+            display: flex;
+            gap: 20px;
+            animation: scroll 40s linear infinite;
+            padding: 0 20px;
+        }
+
+        .reviews-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% - 20px));
+            }
+        }
+
+        .review-card {
+            flex-shrink: 0;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid #FFD600;
+        }
+
+        .review-stars {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #FFD600;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .review-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFD600 0%, #FFC400 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #003DA5;
+            font-size: 18px;
+        }
+
+        .review-info {
+            flex: 1;
+        }
+
+        .review-name {
+            font-weight: bold;
+            color: #003DA5;
+            font-size: 14px;
+        }
+
+        .review-phone {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #003DA5 0%, #0052CC 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-logo img {
+            height: 30px;
+            width: auto;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .review-card {
+                width: 280px;
+            }
+
+            .reviews-title {
+                font-size: 28px;
+            }
+            .features-section,
+            .how-it-works,
+            .cta-section {
+                padding: 40px 20px;
+            }
+
+            .features-title,
+            .how-it-works h2,
+            .cta-section h2 {
+                font-size: 28px;
+            }
+
+            .features,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.png" alt="MTN iLend Logo">
+                <div class="logo-text">
+                    <div class="logo-main">MTN iLend</div>
+                    <div class="logo-sub">Premium iPhone Loans</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="reviews-container">
+            <h2 class="reviews-title">⭐ What Our Customers Say</h2>
+            <div class="reviews-scroll-wrapper">
+                <div class="reviews-scroll">
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"I got my iPhone 15 Pro in just 3 days! The process was so smooth and easy. I'm so grateful to MTN iLend. Best decision ever!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">A</div>
+                            <div class="review-info">
+                                <div class="review-name">Ama Owusu</div>
+                                <div class="review-phone">iPhone 15 Pro</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"Honestly, I didn't think I could afford an iPhone. MTN iLend made my dream come true. Thank you so much!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">K</div>
+                            <div class="review-info">
+                                <div class="review-name">Kwesi Mensah</div>
+                                <div class="review-phone">iPhone 14</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"The half payment option is perfect! I got my phone immediately and can pay the rest later. Highly recommended!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">N</div>
+                            <div class="review-info">
+                                <div class="review-name">Nana Boateng</div>
+                                <div class="review-phone">iPhone 15</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"The customer service was amazing! They helped me through every step. I'm so happy with my new iPhone!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">Y</div>
+                            <div class="review-info">
+                                <div class="review-name">Yaa Asante</div>
+                                <div class="review-phone">iPhone 15 Pro Max</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"No hidden charges, no stress. Just a simple process and my dream phone. I'm forever grateful!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">E</div>
+                            <div class="review-info">
+                                <div class="review-name">Ekow Amoah</div>
+                                <div class="review-phone">iPhone 14 Pro</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"I've been using MTN iLend for 2 months now and I couldn't be happier. Best service ever!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">A</div>
+                            <div class="review-info">
+                                <div class="review-name">Abena Kusi</div>
+                                <div class="review-phone">iPhone 15 - GHS 2,999</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"Got my iPhone 13 for GHS 1,500 down payment. The approval was instant and I had it the same day. Incredible!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">C</div>
+                            <div class="review-info">
+                                <div class="review-name">Comfort Adjei</div>
+                                <div class="review-phone">iPhone 13 - GHS 1,500</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"The iPhone 14 Pro Max was my dream phone. With MTN iLend's half payment plan, it's finally mine! So grateful!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">S</div>
+                            <div class="review-info">
+                                <div class="review-name">Samuel Owusu</div>
+                                <div class="review-phone">iPhone 14 Pro Max - GHS 3,500</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"Paid only GHS 2,000 upfront for my iPhone 15 Pro. The rest I'm paying in installments. Perfect for my budget!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">M</div>
+                            <div class="review-info">
+                                <div class="review-name">Mabel Osei</div>
+                                <div class="review-phone">iPhone 15 Pro - GHS 4,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"I was skeptical at first, but MTN iLend proved me wrong. Fast, transparent, and trustworthy. Highly recommend!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">D</div>
+                            <div class="review-info">
+                                <div class="review-name">David Mensah</div>
+                                <div class="review-phone">iPhone 14 - GHS 2,500</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"Got my iPhone 13 Pro with just GHS 1,800 down payment. The process was so easy and quick. Thank you MTN iLend!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">R</div>
+                            <div class="review-info">
+                                <div class="review-name">Ruth Boateng</div>
+                                <div class="review-phone">iPhone 13 Pro - GHS 3,600</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"I've always wanted an iPhone 15. With MTN iLend, I only paid GHS 2,500 upfront. Dreams do come true!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">J</div>
+                            <div class="review-info">
+                                <div class="review-name">Joseph Kuma</div>
+                                <div class="review-phone">iPhone 15 - GHS 5,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"The best part? No hidden fees! I paid exactly what they told me. MTN iLend is honest and reliable!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">P</div>
+                            <div class="review-info">
+                                <div class="review-name">Patricia Adu</div>
+                                <div class="review-phone">iPhone 14 Pro - GHS 3,200</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"My friends were jealous when I got my iPhone 15 Pro Max! Thanks to MTN iLend for making it possible!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">T</div>
+                            <div class="review-info">
+                                <div class="review-name">Theresa Okonkwo</div>
+                                <div class="review-phone">iPhone 15 Pro Max - GHS 3,750</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"I got my iPhone 13 for just GHS 1,200 down! The team was so helpful and friendly throughout the process."</div>
+                        <div class="review-author">
+                            <div class="review-avatar">B</div>
+                            <div class="review-info">
+                                <div class="review-name">Benjamin Asare</div>
+                                <div class="review-phone">iPhone 13 - GHS 2,400</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"Paid GHS 2,250 for my iPhone 14 Pro. The remaining amount? I'm paying it comfortably over time. Excellent service!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">G</div>
+                            <div class="review-info">
+                                <div class="review-name">Grace Mensah</div>
+                                <div class="review-phone">iPhone 14 Pro - GHS 4,500</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"MTN iLend gave me the confidence to get my dream phone. The half payment option changed everything for me!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">F</div>
+                            <div class="review-info">
+                                <div class="review-name">Felix Boakye</div>
+                                <div class="review-phone">iPhone 15 - GHS 5,200</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate for seamless loop -->
+                    <div class="review-card">
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        <div class="review-text">"I got my iPhone 15 Pro in just 3 days! The process was so smooth and easy. I'm so grateful to MTN iLend. Best decision ever!"</div>
+                        <div class="review-author">
+                            <div class="review-avatar">A</div>
+                            <div class="review-info">
+                                <div class="review-name">Ama Owusu</div>
+                                <div class="review-phone">iPhone 15 Pro - GHS 2,999</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-container">
+            <h2 class="features-title">Why Choose MTN iLend?</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Instant Approval</div>
+                    <div class="feature-desc">Get approved in just minutes with our fast verification process</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Half Payment</div>
+                    <div class="feature-desc">Pay only 50% now and the rest later. Flexible payment terms</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏪</div>
+                    <div class="feature-title">Easy Pickup</div>
+                    <div class="feature-desc">Get your phone at any MTN Circle store near you</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-title">Simple Process</div>
+                    <div class="feature-desc">Just 5 easy steps from browsing to getting your phone</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="how-it-works-container">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1️⃣</div>
+                    <div class="step-title">Browse Phones</div>
+                    <div class="step-desc">Choose from our selection of premium iPhones</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2️⃣</div>
+                    <div class="step-title">Fill Application</div>
+                    <div class="step-desc">Provide your basic information and details</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3️⃣</div>
+                    <div class="step-title">Verify Identity</div>
+                    <div class="step-desc">Upload your Ghana Card for verification</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4️⃣</div>
+                    <div class="step-title">Make Payment</div>
+                    <div class="step-desc">Send half payment via MTN MoMo</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5️⃣</div>
+                    <div class="step-title">Get Your Phone</div>
+                    <div class="step-desc">Pick up your phone at the nearest store</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Get Your Dream Phone?</h2>
+        <p>Join thousands of happy customers who got their iPhones through MTN iLend</p>
+        <button class="cta-button" onclick="startBrowsing()">
+            <span>🛍️</span>
+            <span>Start Browsing Phones</span>
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="MTN iLend Logo">
+                <span>MTN iLend</span>
+            </div>
+            <div class="footer-text">
+                <p>Get your dream phone today with instant loan approval</p>
+                <p style="margin-top: 10px; font-size: 11px;">© 2026 MTN iLend. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function startBrowsing() {
+            window.location.href = 'catalog.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTN iLend - Premium iPhone Loans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #FFD600 0%, #FFC400 100%);
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #003DA5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo span {
+            font-size: 24px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #003DA5;
+            opacity: 0.8;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* Success Message */
+        .success-banner {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(76, 175, 80, 0.3);
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .success-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .success-message {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        /* Ticket Card */
+        .ticket-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 2px solid #FFD600;
+        }
+
+        .ticket-header {
+            background: linear-gradient(90deg, #003DA5 0%, #0052CC 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .ticket-number {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .ticket-id {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+        .ticket-content {
+            padding: 30px;
+        }
+
+        .ticket-section {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .ticket-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #003DA5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .info-label {
+            color: #666;
+        }
+
+        .info-value {
+            font-weight: bold;
+            color: #003DA5;
+        }
+
+        /* Pickup Info */
+        .pickup-info {
+            background: #E3F2FD;
+            border-left: 4px solid #003DA5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .pickup-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #003DA5;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pickup-details {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .pickup-address {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #003DA5;
+        }
+
+        /* Delivery Option */
+        .delivery-section {
+            background: #FFF9E6;
+            border: 2px solid #FFD600;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .delivery-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #003DA5;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .delivery-option {
+            background: white;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .delivery-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .delivery-option:hover {
+            border-color: #FFD600;
+            background: #FFFAF0;
+        }
+
+        .delivery-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .delivery-option-content {
+            flex: 1;
+        }
+
+        .delivery-option-title {
+            font-weight: bold;
+            color: #003DA5;
+            margin-bottom: 3px;
+        }
+
+        .delivery-option-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .delivery-option-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #FFD600;
+        }
+
+        /* Important Notes */
+        .important-notes {
+            background: #FFF3E0;
+            border-left: 4px solid #FF9800;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .notes-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #E65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notes-list {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .notes-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #FFD600 0%, #FFC400 100%);
+            color: #003DA5;
+            box-shadow: 0 4px 8px rgba(255, 214, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 214, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: #E0E0E0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #D0D0D0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #003DA5 0%, #0052CC 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-logo img {
+            height: 30px;
+            width: auto;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .button-group {
+                flex-direction: column;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .delivery-option {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            header, footer, .button-group {
+                display: none;
+            }
+
+            .ticket-card {
+                box-shadow: none;
+                border: 1px solid #333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.png" alt="MTN iLend Logo">
+                <div>
+                    <div style="font-size: 20px;">MTN iLend</div>
+                    <div class="tagline">Premium iPhone Loans</div>
+                </div>
+            </div>
+            <div style="color: #003DA5; font-weight: bold;">Step 5 of 5: Confirmation</div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Success Banner -->
+        <div class="success-banner">
+            <div class="success-icon">✅</div>
+            <div class="success-title">Payment Approved!</div>
+            <div class="success-message">Your loan application has been approved. Your ticket is ready below.</div>
+        </div>
+
+        <!-- Ticket Card -->
+        <div class="ticket-card">
+            <!-- Ticket Header -->
+            <div class="ticket-header">
+                <div class="ticket-number">Loan Confirmation Ticket</div>
+                <div class="ticket-id" id="ticketId">TKT-2026-001234</div>
+            </div>
+
+            <!-- Ticket Content -->
+            <div class="ticket-content">
+                <!-- Loan Details -->
+                <div class="ticket-section">
+                    <div class="section-title">
+                        <span>📱</span>
+                        <span>Loan Details</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Device</span>
+                        <span class="info-value" id="deviceName">Loading...</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Full Price</span>
+                        <span class="info-value" id="fullPrice">GHS 5,999.00</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Half Payment (Paid)</span>
+                        <span class="info-value" id="halfPrice">GHS 2,999.50</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Remaining Balance</span>
+                        <span class="info-value" id="remainingBalance">GHS 2,999.50</span>
+                    </div>
+                </div>
+
+                <!-- Applicant Details -->
+                <div class="ticket-section">
+                    <div class="section-title">
+                        <span>👤</span>
+                        <span>Applicant Information</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Name</span>
+                        <span class="info-value" id="applicantName">John Doe</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Phone Number</span>
+                        <span class="info-value" id="applicantPhone">0501234567</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Application Date</span>
+                        <span class="info-value" id="applicationDate">25 Jun 2026</span>
+                    </div>
+                </div>
+
+                <!-- Pickup Information -->
+                <div class="ticket-section">
+                    <div class="pickup-info">
+                        <div class="pickup-title">
+                            <span>🏪</span>
+                            <span>Pickup Instructions</span>
+                        </div>
+                        <div class="pickup-details">
+                            Please visit the MTN office below to collect your phone. Bring this ticket and a valid ID for verification.
+                        </div>
+                        <div class="pickup-address">
+                            📍 MTN Office Dansoman Branch<br>
+                            Dansoman, Accra, Ghana
+                        </div>
+                        <div class="pickup-details" style="margin-top: 15px; font-size: 12px;">
+                            ⏰ Office Hours: Monday - Friday, 9:00 AM - 5:00 PM<br>
+                            <div style="margin-top: 10px;">
+                                📞 Phone: <span style="font-weight: bold; color: #003DA5;">+233 (0) 5XX XXX XXX</span><br>
+                                💬 WhatsApp: <span style="font-weight: bold; color: #25D366;">+233 (0) 5XX XXX XXX</span><br>
+                                📧 Email: <span style="font-weight: bold; color: #EA4335;">support@mtniLend.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Option -->
+                <div class="ticket-section">
+                    <div class="delivery-section">
+                        <div class="delivery-title">
+                            <span>🚚</span>
+                            <span>Delivery Option</span>
+                        </div>
+
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery" value="pickup" checked onchange="updateDelivery()">
+                            <div class="delivery-option-content">
+                                <div class="delivery-option-title">Pickup at MTN Office</div>
+                                <div class="delivery-option-desc">Collect your phone from MTN Office Dansoman Branch</div>
+                            </div>
+                            <div class="delivery-option-price">FREE</div>
+                        </label>
+
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery" value="delivery" onchange="updateDelivery()">
+                            <div class="delivery-option-content">
+                                <div class="delivery-option-title">Home Delivery</div>
+                                <div class="delivery-option-desc">Get your phone delivered to your address</div>
+                            </div>
+                            <div class="delivery-option-price">GHS 40</div>
+                        </label>
+
+                        <!-- Delivery Contact Details (Hidden by default) -->
+                        <div id="deliveryDetails" style="display: none; margin-top: 20px; padding: 15px; background: #F5F5F5; border-radius: 8px; border-left: 4px solid #FFD600;">
+                            <div style="font-weight: bold; color: #003DA5; margin-bottom: 10px; font-size: 14px;">🚚 Delivery Contact Information</div>
+                            <div style="font-size: 13px; line-height: 1.8;">
+                                📞 Delivery Phone: <span style="font-weight: bold; color: #003DA5;">+233 (0) 5XX XXX XXX</span><br>
+                                💬 WhatsApp: <span style="font-weight: bold; color: #25D366;">+233 (0) 5XX XXX XXX</span><br>
+                                ⏱️ Delivery Time: 1-3 business days
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Notes -->
+                <div class="ticket-section">
+                    <div class="important-notes">
+                        <div class="notes-title">
+                            <span>⚠️</span>
+                            <span>Important Notes</span>
+                        </div>
+                        <ul class="notes-list">
+                            <li>✓ Keep this ticket safe - you'll need it for pickup</li>
+                            <li>✓ Bring a valid government ID for verification</li>
+                            <li>✓ The remaining balance (GHS 2,999.50) is due at pickup</li>
+                            <li>✓ If choosing delivery, additional GHS 40 will be charged</li>
+                            <li>✓ Contact us if you have any questions or need to reschedule</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+            <button type="button" class="btn btn-secondary" onclick="window.print()">🖨️ Print Ticket</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href='catalog.html'">Browse More Phones</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="MTN iLend Logo">
+                <span>MTN iLend</span>
+            </div>
+            <div class="footer-text">
+                <p>Get your dream phone today with instant loan approval</p>
+                <p style="margin-top: 10px; font-size: 12px;">© 2026 MTN iLend. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Generate ticket ID
+        function generateTicketId() {
+            const year = new Date().getFullYear();
+            const random = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+            return `TKT-${year}-${random}`;
+        }
+
+        // Load data from session storage
+        window.addEventListener('load', function() {
+            // Set ticket ID
+            document.getElementById('ticketId').textContent = generateTicketId();
+
+            // Load phone data
+            const phoneData = sessionStorage.getItem('selectedPhone');
+            if (phoneData) {
+                const phone = JSON.parse(phoneData);
+                document.getElementById('deviceName').textContent = phone.name;
+                const fullPrice = phone.fullPrice || phone.price || 0;
+                const halfPayment = phone.halfPayment || phone.initialDeposit || 0;
+                document.getElementById('fullPrice').textContent = 'GHS ' + fullPrice.toLocaleString();
+                document.getElementById('halfPrice').textContent = 'GHS ' + halfPayment.toLocaleString();
+                document.getElementById('remainingBalance').textContent = 'GHS ' + halfPayment.toLocaleString();
+            }
+
+            // Load application data
+            const appData = sessionStorage.getItem('applicationData');
+            if (appData) {
+                const app = JSON.parse(appData);
+                document.getElementById('applicantName').textContent = app.firstName + ' ' + app.lastName;
+                document.getElementById('applicantPhone').textContent = app.phoneNumber;
+            }
+
+            // Set application date
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            document.getElementById('applicationDate').textContent = dateStr;
+        });
+
+        function updateDelivery() {
+            const selected = document.querySelector('input[name="delivery"]:checked').value;
+            const deliveryDetails = document.getElementById('deliveryDetails');
+            
+            // Show delivery details only when delivery option is selected
+            if (selected === 'delivery') {
+                deliveryDetails.style.display = 'block';
+            } else {
+                deliveryDetails.style.display = 'none';
+            }
+            
+            console.log('Delivery option selected:', selected);
+        }
+    </script>
+</body>
+</html>
