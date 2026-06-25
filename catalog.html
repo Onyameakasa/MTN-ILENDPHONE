@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTN iLend - iPhone Catalog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #FFD600 0%, #FFC400 100%);
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #003DA5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            background: #003DA5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFD600;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            padding: 8px 16px;
+            background: #003DA5;
+            color: #FFD600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #003DA5;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Category */
+        .category {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 24px;
+            color: #003DA5;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #FFD600;
+        }
+
+        /* Phone Grid */
+        .phones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .phone-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .phone-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-color: #FFD600;
+        }
+
+        .phone-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #FFD600 0%, #003DA5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+        }
+
+        .phone-info {
+            padding: 20px;
+        }
+
+        .phone-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #003DA5;
+            margin-bottom: 8px;
+        }
+
+        .phone-specs {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .price-section {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .price-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFD600;
+        }
+
+        .deposit-section {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .deposit-label {
+            color: #666;
+            margin-bottom: 2px;
+        }
+
+        .deposit-amount {
+            font-weight: bold;
+            color: #003DA5;
+            font-size: 16px;
+        }
+
+        .apply-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #FFD600 0%, #FFC400 100%);
+            color: #003DA5;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .apply-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(255, 214, 0, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #003DA5;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .phones-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-img">iL</div>
+                <span>MTN iLend</span>
+            </div>
+            <button class="back-btn" onclick="goBack()">← Back</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="hero">
+            <h1>🍎 iPhone Catalog</h1>
+            <p>Choose your device and apply for instant loan approval</p>
+        </div>
+
+        <!-- iPhone 17 Series -->
+        <div class="category">
+            <div class="category-title">iPhone 17 Series</div>
+            <div class="phones-grid" id="iphone17"></div>
+        </div>
+
+        <!-- iPhone 16 Series -->
+        <div class="category">
+            <div class="category-title">iPhone 16 Series</div>
+            <div class="phones-grid" id="iphone16"></div>
+        </div>
+
+        <!-- iPhone 15 Series -->
+        <div class="category">
+            <div class="category-title">iPhone 15 Series</div>
+            <div class="phones-grid" id="iphone15"></div>
+        </div>
+
+        <!-- iPhone 14 Series -->
+        <div class="category">
+            <div class="category-title">iPhone 14 Series</div>
+            <div class="phones-grid" id="iphone14"></div>
+        </div>
+
+        <!-- iPhone 13 Series -->
+        <div class="category">
+            <div class="category-title">iPhone 13 Series</div>
+            <div class="phones-grid" id="iphone13"></div>
+        </div>
+
+        <!-- iPhone 12 Series -->
+        <div class="category">
+            <div class="category-title">iPhone 12 Series</div>
+            <div class="phones-grid" id="iphone12"></div>
+        </div>
+
+        <!-- iPhone 11 & XR Series -->
+        <div class="category">
+            <div class="category-title">iPhone 11 & XR Series</div>
+            <div class="phones-grid" id="iphone11"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 MTN iLend. All rights reserved.</p>
+        <p style="font-size: 12px; margin-top: 10px;">Fast • Secure • Reliable</p>
+    </footer>
+
+    <script>
+        const phones = {
+            iphone17: [
+                { name: 'iPhone 17 Pro Max 1TB', specs: '1TB Storage', price: 28000, deposit: 11200 },
+                { name: 'iPhone 17 Pro Max 1TB (eSim)', specs: '1TB eSim', price: 25900, deposit: 10360 },
+                { name: 'iPhone 17 Pro Max 512GB', specs: '512GB Storage', price: 23400, deposit: 9360 },
+                { name: 'iPhone 17 Pro Max 256GB', specs: '256GB Storage', price: 20800, deposit: 8320 },
+                { name: 'iPhone 17 Pro Max 256GB (eSim)', specs: '256GB eSim', price: 19400, deposit: 7760 },
+                { name: 'iPhone 17 Pro 512GB', specs: '512GB Storage', price: 21000, deposit: 8400 },
+                { name: 'iPhone 17 Pro 256GB', specs: '256GB Storage', price: 18300, deposit: 7320 },
+                { name: 'iPhone 17 Pro 256GB (eSim)', specs: '256GB eSim', price: 16800, deposit: 6720 },
+                { name: 'iPhone 17 Air 256GB', specs: '256GB Storage', price: 13500, deposit: 5400 },
+                { name: 'iPhone 17 256GB', specs: '256GB Storage', price: 13400, deposit: 5360 }
+            ],
+            iphone16: [
+                { name: 'iPhone 16 Pro Max 256GB', specs: 'Sim', price: 17000, deposit: 6800 },
+                { name: 'iPhone 16 Pro Max (Sim Locked)', specs: 'Locked', price: 14000, deposit: 5600 },
+                { name: 'iPhone 16 Pro Max 512GB', specs: '512GB Storage', price: 15500, deposit: 6200 },
+                { name: 'iPhone 16 Pro Max 256GB', specs: '256GB Storage', price: 14200, deposit: 5680 },
+                { name: 'iPhone 16 Plus 256GB', specs: '256GB Storage', price: 12000, deposit: 4500 },
+                { name: 'iPhone 16 Plus 128GB', specs: '128GB Storage', price: 10500, deposit: 4200 },
+                { name: 'iPhone 16 256GB', specs: '256GB Storage', price: 10800, deposit: 4320 },
+                { name: 'iPhone 16 128GB', specs: '128GB Storage', price: 9500, deposit: 3800 }
+            ],
+            iphone15: [
+                { name: 'iPhone 15 Pro Max 256GB', specs: '256GB Storage', price: 11500, deposit: 4600 },
+                { name: 'iPhone 15 Pro 256GB', specs: '256GB Storage', price: 10000, deposit: 4000 },
+                { name: 'iPhone 15 Pro 128GB', specs: '128GB Storage', price: 9500, deposit: 3800 },
+                { name: 'iPhone 15 Plus 256GB', specs: '256GB Storage', price: 8800, deposit: 3520 },
+                { name: 'iPhone 15 Plus 128GB', specs: '128GB Storage', price: 8500, deposit: 3400 },
+                { name: 'iPhone 15 256GB', specs: '256GB Storage', price: 8000, deposit: 3200 },
+                { name: 'iPhone 15 128GB', specs: '128GB Storage', price: 7500, deposit: 3000 }
+            ],
+            iphone14: [
+                { name: 'iPhone 14 Pro Max 256GB', specs: '256GB Storage', price: 9300, deposit: 3720 },
+                { name: 'iPhone 14 Pro Max 128GB', specs: '128GB Storage', price: 9000, deposit: 3600 },
+                { name: 'iPhone 14 Pro 256GB', specs: '256GB Storage', price: 7900, deposit: 3160 },
+                { name: 'iPhone 14 Pro 128GB', specs: '128GB Storage', price: 7500, deposit: 3000 },
+                { name: 'iPhone 14 Plus 256GB', specs: '256GB Storage', price: 6600, deposit: 2640 },
+                { name: 'iPhone 14 Plus 128GB', specs: '128GB Storage', price: 6000, deposit: 2400 },
+                { name: 'iPhone 14 256GB', specs: '256GB Storage', price: 5800, deposit: 2320 },
+                { name: 'iPhone 14 128GB', specs: '128GB Storage', price: 5600, deposit: 2240 }
+            ],
+            iphone13: [
+                { name: 'iPhone 13 Pro Max 256GB', specs: '256GB Storage', price: 7000, deposit: 2800 },
+                { name: 'iPhone 13 Pro Max 128GB', specs: '128GB Storage', price: 6600, deposit: 2640 },
+                { name: 'iPhone 13 Pro 256GB', specs: '256GB Storage', price: 6000, deposit: 2400 },
+                { name: 'iPhone 13 Pro 128GB', specs: '128GB Storage', price: 5550, deposit: 2220 },
+                { name: 'iPhone 13 256GB', specs: '256GB Storage', price: 4800, deposit: 1920 },
+                { name: 'iPhone 13 128GB', specs: '128GB Storage', price: 4300, deposit: 1720 }
+            ],
+            iphone12: [
+                { name: 'iPhone 12 Pro Max 256GB', specs: '256GB Storage', price: 5500, deposit: 2200 },
+                { name: 'iPhone 12 Pro Max 128GB', specs: '128GB Storage', price: 5200, deposit: 2080 },
+                { name: 'iPhone 12 Pro 256GB', specs: '256GB Storage', price: 4400, deposit: 1760 },
+                { name: 'iPhone 12 Pro 128GB', specs: '128GB Storage', price: 4100, deposit: 1640 },
+                { name: 'iPhone 12 128GB', specs: '128GB Storage', price: 3850, deposit: 1540 },
+                { name: 'iPhone 12 64GB', specs: '64GB Storage', price: 3350, deposit: 1340 }
+            ],
+            iphone11: [
+                { name: 'iPhone 11 Pro Max 256GB', specs: '256GB Storage', price: 4000, deposit: 1600 },
+                { name: 'iPhone 11 Pro Max 64GB', specs: '64GB Storage', price: 3850, deposit: 1540 },
+                { name: 'iPhone 11 Pro 256GB', specs: '256GB Storage', price: 3600, deposit: 1440 },
+                { name: 'iPhone 11 Pro 64GB', specs: '64GB Storage', price: 3450, deposit: 1380 },
+                { name: 'iPhone 11 128GB', specs: '128GB Storage', price: 2900, deposit: 1740 },
+                { name: 'iPhone 11 64GB', specs: '64GB Storage', price: 2600, deposit: 1560 },
+                { name: 'iPhone XR 128GB', specs: '128GB Storage', price: 2450, deposit: 1470 },
+                { name: 'iPhone XR 64GB', specs: '64GB Storage', price: 2100, deposit: 1260 }
+            ]
+        };
+
+        function renderPhones(category, containerId) {
+            const container = document.getElementById(containerId);
+            const phoneList = phones[category];
+
+            phoneList.forEach((phone, index) => {
+                const card = document.createElement('div');
+                card.className = 'phone-card';
+                card.onclick = () => applyForLoan(phone.name, phone.price, phone.deposit);
+
+                card.innerHTML = `
+                    <div class="phone-image">📱</div>
+                    <div class="phone-info">
+                        <div class="phone-name">${phone.name}</div>
+                        <div class="phone-specs">${phone.specs}</div>
+                        
+                        <div class="price-section">
+                            <div class="price-label">Full Price</div>
+                            <div class="price">GH₵${phone.price.toLocaleString()}</div>
+                        </div>
+
+                        <div class="deposit-section">
+                            <div class="deposit-label">Initial Deposit (40%)</div>
+                            <div class="deposit-amount">GH₵${phone.deposit.toLocaleString()}</div>
+                        </div>
+
+                        <button class="apply-btn">Apply for Loan</button>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function applyForLoan(phoneName, fullPrice, deposit) {
+            // Save phone info to localStorage
+            const phoneData = {
+                name: phoneName,
+                fullPrice: fullPrice,
+                initialDeposit: deposit,
+                remainingAmount: fullPrice - deposit
+            };
+            localStorage.setItem('selectedPhone', JSON.stringify(phoneData));
+            
+            // Navigate to application form
+            window.location.href = 'application.html';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        // Render all categories
+        renderPhones('iphone17', 'iphone17');
+        renderPhones('iphone16', 'iphone16');
+        renderPhones('iphone15', 'iphone15');
+        renderPhones('iphone14', 'iphone14');
+        renderPhones('iphone13', 'iphone13');
+        renderPhones('iphone12', 'iphone12');
+        renderPhones('iphone11', 'iphone11');
+    </script>
+</body>
+</html>

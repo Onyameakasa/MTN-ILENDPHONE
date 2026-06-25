@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTN Circle Phones - Premium iPhone Loans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #003DA5 0%, #0052CC 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 214, 0, 0.95);
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #003DA5;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo span {
+            font-size: 36px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .logo-main {
+            font-size: 28px;
+        }
+
+        .logo-sub {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .hero {
+            max-width: 800px;
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #FFD600;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            padding: 0 20px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 214, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #FFD600;
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* CTA Button */
+        .cta-section {
+            margin: 40px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: linear-gradient(90deg, #FFD600 0%, #FFC400 100%);
+            color: #003DA5;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 214, 0, 0.4);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 214, 0, 0.6);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #FFD600;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-box h3 {
+            color: #FFD600;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(255, 214, 0, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .hero-icon {
+                font-size: 60px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .cta-button {
+                padding: 14px 40px;
+                font-size: 16px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .logo span {
+                font-size: 28px;
+            }
+
+            .logo-main {
+                font-size: 20px;
+            }
+        }
+
+        /* Pulse animation for button */
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(255, 214, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(255, 214, 0, 0.6);
+            }
+        }
+
+        .cta-button {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <span>📱</span>
+                <div class="logo-text">
+                    <div class="logo-main">MTN iLend</div>
+                    <div class="logo-sub">Premium iPhone Loans</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="hero">
+            <!-- Hero Icon -->
+            <div class="hero-icon">🎉</div>
+
+            <!-- Main Heading -->
+            <h1>Get Your Dream iPhone Today</h1>
+
+            <!-- Subtitle -->
+            <p>Instant loan approval with MTN iLend</p>
+            <p class="hero-subtitle">Pay half now, get your phone immediately</p>
+
+            <!-- Features Grid -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Instant Approval</div>
+                    <div class="feature-desc">Get approved in minutes</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Half Payment</div>
+                    <div class="feature-desc">Pay 50% now, rest later</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏪</div>
+                    <div class="feature-title">Easy Pickup</div>
+                    <div class="feature-desc">Get your phone at Circle</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-title">Simple Process</div>
+                    <div class="feature-desc">5 easy steps to your phone</div>
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div class="info-box">
+                <h3>✨ How It Works</h3>
+                <p>
+                    1️⃣ Browse phones • 2️⃣ Fill application • 3️⃣ Verify identity • 
+                    4️⃣ Get cash approval • 5️⃣ Pick up your phone
+                </p>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="cta-section">
+                <button class="cta-button" onclick="startBrowsing()">
+                    <span>🛍️</span>
+                    <span>Start Browsing Phones</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span>📱</span>
+                <span>MTN iLend</span>
+            </div>
+            <div class="footer-text">
+                <p>Get your dream phone today with instant loan approval</p>
+                <p style="margin-top: 10px; font-size: 11px;">© 2026 MTN Circle Phones. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function startBrowsing() {
+            // Navigate to phone catalog
+            window.location.href = 'catalog.html';
+        }
+
+        // Add smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
